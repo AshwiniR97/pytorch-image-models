@@ -1,0 +1,4 @@
+# MLflow experiment tracking dependencies
+# These are installed automatically by custom_training.sh on the GPU node
+mlflow>=2.0.0
+pyyaml>=6.0
