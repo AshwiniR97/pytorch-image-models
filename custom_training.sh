@@ -188,7 +188,7 @@ stdbuf -oL -eL torchrun --nproc_per_node=2 train.py \
     --experiment "$EXPERIMENT_NAME" \
     --log-interval $LOG_INTERVAL \
     --checkpoint-hist 5 \
-    2>&1 | tee "$OUTPUT_DIR/$EXPERIMENT_NAME/training.log"
+    2>&1 | stdbuf -oL -eL tee "$OUTPUT_DIR/$EXPERIMENT_NAME/training.log"
 
 TRAIN_EXIT_CODE=$?
 END_TIME=$(date +%s)
@@ -246,7 +246,7 @@ stdbuf -oL -eL python -u validate.py \
     -b $VAL_BATCH_SIZE \
     --results-file "$OUTPUT_DIR/$EXPERIMENT_NAME/test_results.csv" \
     --workers $NUM_WORKERS \
-    2>&1 | tee "$OUTPUT_DIR/$EXPERIMENT_NAME/validation.log"
+    2>&1 | stdbuf -oL -eL tee "$OUTPUT_DIR/$EXPERIMENT_NAME/validation.log"
 
 VAL_EXIT_CODE=$?
 echo ""
